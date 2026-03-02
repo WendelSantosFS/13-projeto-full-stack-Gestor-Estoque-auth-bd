@@ -1,0 +1,28 @@
+
+body {
+    background-color: #3b3a3a;
+    color: #fff;
+}
+
+.headerMenu {
+    padding: 20px;
+}
+
+.spaceLayoutOutlet {
+    margin-bottom: 30px;
+}
+
+.btnLinkDashboard {
+    padding: 6px 10px;
+    background-color: #6e6b6b;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.btnLinkDashboard:hover {
+    background-color: bisque;
+    color: #000;
+}
+
+footer {
+    margin-top: 300px;
+}

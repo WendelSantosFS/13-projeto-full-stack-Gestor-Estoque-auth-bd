@@ -1,0 +1,41 @@
+.textoPrincipal {
+    font-size: 50px;
+    /* color: #fff; */
+}
+
+main {
+    height: 100vh;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.divPrincipal {
+    width: 500px;
+    /* color: #fff; */
+}
+
+form {
+    background-color: bisque;
+
+    width: 500px;
+    height: 300px;
+}
+
+form input[type="text"] , form input[type="password"]{
+    border: 1px solid black;
+    width: 80%;
+    margin: 0 auto;
+}
+
+form input[type="submit"] {
+    width: 70%;
+    padding: 10px;
+    background-color: beige;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+form input[type="submit"]:hover {
+    background-color: rgb(72, 9, 148);
+    color: #fff;
+    cursor: pointer;
+}

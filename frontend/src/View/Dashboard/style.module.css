@@ -1,0 +1,26 @@
+
+.dashb {
+    margin-top: 20px;
+}
+.dashb div {
+    background-color: #2c2a2a;
+    padding: 10px 15px;
+    width: 300px;
+}
+
+.pNumber {
+    font-size: 45px;
+}
+
+
+.prodRecentesAcabando {
+    margin-top: 20px;
+    
+}
+.divRecentes, .divAcabando {
+    width: 45%;
+}
+.colunaRecentesAcabando {
+    background-color: #2c2a2a;
+    padding: 10px 30px 10px 10px;
+}

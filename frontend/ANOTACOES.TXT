@@ -1,0 +1,14 @@
+Um projeto deve um FRONTend  e o BACKend
+
+
+2 pastas diferentes:
+    - Em um MVC:   frontend: View    Backend: Model, controller
+
+
+    1- Front End     
+        src / [model , view, controller]
+
+    2- Back End
+        - Aqui fica o BANCO DE DADOS.
+        - 
+
