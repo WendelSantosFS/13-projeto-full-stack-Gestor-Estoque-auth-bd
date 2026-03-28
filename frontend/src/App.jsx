@@ -14,8 +14,6 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    console.log( user, password )
 
     if (user.length < 1 || password.length < 1) {
       console.log("User ou password está vazio!")
@@ -25,13 +23,14 @@ function App() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
+        body: JSON.stringify(
+          {
           user, password
-        })
+        }
+      )
       })
 
       const data = await response.json()
-      console.log(data)
 
       if (data.message == true) {
         navigate("/")

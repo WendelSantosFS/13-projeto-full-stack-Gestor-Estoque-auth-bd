@@ -29,7 +29,8 @@ app.use(express.json())
 app.post('/login', (req, res) => {
     const { user, password } = req.body // Como estao os nomes no Front-end
 
-    if ( user == process.env.USER_ADMIN) {
+    if ( user == process.env.USER_ADMIN && password == process.env.PASSWORD_ADMIN) {
+      console.log('senha e user confirmados!')
       res.json( { message: true })
     } else {
       res.json( { message: "user errado!"})
