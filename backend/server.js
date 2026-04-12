@@ -9,11 +9,21 @@ app.use(cors({
 
 */
 
-import cors from "cors"
-import express from "express"
+// import cors from "cors"
+// import express from "express"
+// import bcript from "bcrypt";
+// import pg from "postgres"
 
 
-import dotenv from "dotenv"
+const cors = require('cors')
+const express = require('express')
+const bcrypt = require('bcrypt')
+const pg = require('postgres')
+
+
+
+// import dotenv from "dotenv"
+let dotenv = require('dotenv')
 dotenv.config( { path: '.env.local'})
 
 
@@ -38,6 +48,37 @@ app.post('/login', (req, res) => {
 
     
 })
+
+
+
+app.post('/admin', async (req, res) => {
+
+  const { user, password } = req.body
+
+  console.log(user, password)
+
+
+
+  const sql = await pg(`postgres://postgres:${process.env.PASSWORD_SQL}@localhost:5432/app_gestor_estoque`)
+
+  const resultSQL = await sql`SELECT * FROM user_adm WHERE nome=${user}`
+  const { senha } = await resultSQL[0]
+
+
+
+  const comparePassword = await bcrypt.compare(password, senha)
+
+
+
+
+  if (comparePassword) {
+    res.status(200).json( { compare: true})
+  }
+
+  res.json({ message: 'Ok!', SQL: resultSQL})
+
+})
+
 
 
 

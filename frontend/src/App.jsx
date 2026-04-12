@@ -46,7 +46,7 @@ function App() {
         <h1 className='textoPrincipal'>Gestor de Estoque</h1>
 
         
-        <form className='flex flex-col gap-1 justify-center' onSubmit={handleSubmit}>
+        <form className='flex flex-col gap-1 justify-center' onSubmit={handleSubmit} autoComplete='off'>
           <div className='flex flex-col'>
             <label htmlFor="user">Usuário: </label>
             <input type="text" name="user" id="user" value={user} onChange={ (ev) => { setUser(ev.target.value)} }/><br />

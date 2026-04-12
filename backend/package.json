@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "server-node": "node --watch server.js"
+    "server-node": "node --watch server.js",
+    "create-user": "node --watch create-user/server.js"
   },
   "keywords": [],
   "author": "",

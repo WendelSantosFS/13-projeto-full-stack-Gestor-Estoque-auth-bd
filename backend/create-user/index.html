@@ -7,31 +7,55 @@
 </head>
 <body>
     
-    <h1>Criador de Usuário - Formulário</h1>
+    <h1>Criador de Usuário com senha CRIPTOGRAFADA</h1>
 
     <form>
 
         <div>
-            <label for="user">Nome: </label>
-            <input type="text" name="user" id="user" >
+            <label for="user">Nome do User: </label>
+            <input type="text" name="user" id="user">
         </div>
 
 
         <div>
-            <label for="password">Senha: </label>
-            <input type="password" name="password" id="password" >
+            <label for="password">Senha do User: </label>
+            <input type="password" name="password" id="password">
         </div>
         
 
         <div>
             <label for="userSQL">User SQL: </label>
-            <input type="user" name="userSQL" id="userSQL" >
+            <input type="user" name="userSQL" id="userSQL">
         </div>
 
 
         <div>
             <label for="passwordSQL">Senha SQL: </label>
-            <input type="password" name="passwordSQL" id="passwordSQL" >
+            <input type="password" name="passwordSQL" id="passwordSQL">
+        </div>
+
+        <div>
+            <label for="nomeBd">Nome do Banco de Dados: </label>
+            <input type="text" name="nomeBd" id="nomeBd">
+        </div>
+
+        <div>
+            <label for="criptografia">Palavra-chave de CRIPTGRAFIA: </label>
+            <input type="password" name="criptografia" id="criptografia">
+        </div>
+
+        <div>
+            <label for="localHost">LocalHost: </label>
+            <input type="number" name="localHost" id="localHost">
+        </div>
+
+        <div>
+            <label for="funcao">Função: </label>
+            <select id="funcao">
+                <option value="chefe-adm">chefe-adm</option>
+                <option value="funcionario-employee">funcionario-employee</option>
+                <option value="usuario-user">usuario-user</option>
+            </select>
         </div>
 
 

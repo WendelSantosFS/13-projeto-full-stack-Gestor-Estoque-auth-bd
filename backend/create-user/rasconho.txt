@@ -1,0 +1,38 @@
+
+
+
+
+INFORMAÇÕES QUE PRECISO:
+
+    - Nome do Usuário
+    - Senha do Usuário
+    - Usuário SQL
+    - Senha SQL
+    - Nome do Banco de Dados que quero me conectar
+    - Palavra-chave para Criptografia
+    - LocalHost:    (5432 - é o meu)
+    - Função para ATUALIZAÇÕES posteriores   (chefe/adm  ,  funcionario/employee  , usuario/user)
+
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS user_adm (   //// Como a tabela de USUÁRIOS foi criada. 
+
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,      // Refazer e colocar como UNIQUE, todos os usários com nomes DIFERENTES - OK
+	senha VARCHAR(100) NOT NULL,   // Foi trocado o tipo para TEXT - OK
+	cargo VARCHAR(100) NOT NULL
+);
+
+
+nome = UNIQUE:
+    ALTER TABLE user_adm
+    ADD CONSTRAINT nome UNIQUE(nome);
+
+
+
+
+FAZER AGORA:
+    - Verificar se o nome de USUARIO já existe

@@ -15,27 +15,29 @@ main {
 }
 
 form {
-    background-color: bisque;
+    background-color: #7c7679;
 
     width: 500px;
     height: 300px;
+
+    border-radius: 10px;
 }
 
 form input[type="text"] , form input[type="password"]{
-    border: 1px solid black;
     width: 80%;
     margin: 0 auto;
 }
 
 form input[type="submit"] {
-    width: 70%;
+    width: 50%;
     padding: 10px;
-    background-color: beige;
+    background-color: rgb(35, 35, 33);
+    transition: .4s;
     border-radius: 20px;
     margin: 0 auto;
 }
 form input[type="submit"]:hover {
-    background-color: rgb(72, 9, 148);
+    background-color: rgb(83, 31, 146);
     color: #fff;
     cursor: pointer;
 }
