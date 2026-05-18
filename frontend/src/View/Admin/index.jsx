@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
+import Form from "../../components/form";
 
 
 
@@ -38,31 +39,14 @@ function Admin () {
 
     }
 
-    return(
-        <div className="">
-        
-            <form className={`flex flex-col justify-center items-center gap-2 ${styles.formAdmin}`} onSubmit={submitAdmin} autoComplete="off">
-                
-                <input type="text" 
-                    placeholder="User"
-                    required
-                    value={user}
-                    onChange={ (ev) => setUser(ev.target.value)}
-                name="userAdmin" id="userAdmin"
-                />
+    return<Form 
+        user={user}
+        setUser={setUser}
+        password={password}
+        setPassword={setPassword}
 
-                <input type="password" 
-                    placeholder="Password"
-                    value={password}
-                    required
-                    onChange={ (ev) => setPassword(ev.target.value)}
-                name="passwordAdmin" id="passwordAdmin" />
-
-                <input type="submit" value="Entrar"/>
-            </form>
-
-        </div>
-    )
+        submitAdmin={submitAdmin}
+    />
 
 }
 
