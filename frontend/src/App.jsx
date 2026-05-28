@@ -20,7 +20,7 @@ function App() {
     if (user.length < 1 || password.length < 1) {
       console.log("User ou password está vazio!")
     } else {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:3000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -35,7 +35,7 @@ function App() {
       const data = await response.json()
 
       if (data.message == true) {
-        navigate("/")
+        navigate("/app")
       }
     }
   }

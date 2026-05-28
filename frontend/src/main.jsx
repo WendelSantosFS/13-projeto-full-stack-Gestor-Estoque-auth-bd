@@ -16,14 +16,14 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
 
-        <Route path='/login'  element={ <App /> } />
+        <Route path='/'  element={ <App /> } />   // Rota de LOGIN
         
-        <Route path='/admin' element={ <Admin />}></Route>
+        <Route path='/admin' element={ <Admin />}></Route>              // rota do Administrador
         <Route path='/admin/acessos' element={ <Acessos /> }></Route>
 
 
-        <Route path='/' element={ <Layout />}>
-          <Route index element={ <Dashboard /> }/>
+        <Route path='/app' element={ <Layout />}>   // Layout do APP
+          <Route index element={ <Dashboard /> }/>  // APP
         </Route>
 
       </Routes>

@@ -1,30 +1,26 @@
 /* Se o navegador começar a BLOQUEAR as requisições, usar o CORS
-
 npm i cors
 
 const cors = require("cors")
 app.use(cors({
   origin: "http://localhost:5173"
 }))
-
 */
-
-// import cors from "cors"
-// import express from "express"
-// import bcript from "bcrypt";
-// import pg from "postgres"
-
 
 const cors = require('cors')
 const express = require('express')
 const bcrypt = require('bcrypt')
 const pg = require('postgres')
 
-
-
 // import dotenv from "dotenv"
 let dotenv = require('dotenv')
 dotenv.config( { path: '.env.local'})
+
+
+// Middlaware - Auth
+const authMiddleware = require('./middleware/auth-middleware')
+
+
 
 
 const app = express()
@@ -36,8 +32,12 @@ app.use(cors({
 app.use(express.json())
 
 
-app.post('/login', (req, res) => {
+
+
+app.post('/', (req, res) => {
     const { user, password } = req.body // Como estao os nomes no Front-end
+
+    
 
     if ( user == process.env.USER_ADMIN && password == process.env.PASSWORD_ADMIN) {
       console.log('senha e user confirmados!')
@@ -48,7 +48,6 @@ app.post('/login', (req, res) => {
 
     
 })
-
 
 
 app.post('/admin', async (req, res) => {
