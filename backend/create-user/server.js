@@ -1,9 +1,7 @@
-import express from 'express'
-import db from 'postgres'
-import bcrypt from 'bcrypt'
-
-import cors from 'cors'
-
+const express = require('express')
+const db = require('postgres')
+const bcrypt = require('bcrypt')
+const cors = require('cors')
 
 const app = express()
 
@@ -15,7 +13,6 @@ app.use(express.json())
 
 
 
-
 app.post('/createUser', async (req, res) => {
 
     const { 
@@ -23,37 +20,35 @@ app.post('/createUser', async (req, res) => {
         password1, 
         userSQL1, 
         passwordSQL1,
-        nomeBd1, 
-        chave,   // KEY para Criptografia
+        nomeBd1,
         localHost1, 
-        funcao1              
+        funcao1,
+        table
     } = req.body
 
-    
     const senhaCripto = await bcrypt.hash(password1, 10)
 
 
 
-    const sql = await db(`postgres://${userSQL1}:${passwordSQL1}@localhost:${localHost1}/${nomeBd1}`)
+    const connectionString = `postgres://${userSQL1}:${passwordSQL1}@localhost:${localHost1}/${nomeBd1}`
+    const sql = db(connectionString)
 
-    const nomeExisteSQL = await sql`SELECT * from user_adm WHERE nome = ${user1}`
-    console.log('CONSULTA leve:   888 ', nomeExisteSQL)
+    const userExists = await sql`SELECT * FROM ${sql(table)} WHERE nome = ${user1}`
 
-    if ( nomeExisteSQL.length > 0 ) { 
-        
-        
+
+
+
+    if ( userExists.length > 0 ) { 
         console.log('Usuário já existe')
+        res.status(500).json({ message: 'Usuário já EXISTE' })
+        await sql.end()
+    } 
+    else {
 
-    } else {
-
-        const result = await sql`INSERT INTO user_adm (nome, senha, cargo) VALUES (${user1}, ${senhaCripto}, ${funcao1}) returning*`
-        // CARGO == FUNCAO
-
-        
-        console.log(result)
-
+        const result = await sql`INSERT INTO ${sql(table)} (nome, senha, cargo) VALUES (${user1}, ${senhaCripto}, ${funcao1}) returning*`
 
         res.json('User criado!')
+        await sql.end()
     }
  
 })
@@ -69,7 +64,7 @@ app.post('/createUser', async (req, res) => {
 
 
 
-const PORT = 3001
+const PORT = 3000
 app.listen( PORT, () => {
-    console.log(`Criador de USER iniciado!  http://localhost:3001`)
+    console.log(`Criador de USER iniciado!  http://localhost:3000`)
 })

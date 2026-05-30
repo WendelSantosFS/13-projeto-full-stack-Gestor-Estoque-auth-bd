@@ -25,7 +25,7 @@
 
         <div>
             <label for="userSQL">User SQL: </label>
-            <input type="user" name="userSQL" id="userSQL">
+            <input type="text" name="userSQL" id="userSQL" value="postgres">
         </div>
 
 
@@ -36,25 +36,25 @@
 
         <div>
             <label for="nomeBd">Nome do Banco de Dados: </label>
-            <input type="text" name="nomeBd" id="nomeBd">
+            <input type="text" name="nomeBd" id="nomeBd" value="app_gestor_estoque">
         </div>
 
         <div>
-            <label for="criptografia">Palavra-chave de CRIPTGRAFIA: </label>
-            <input type="password" name="criptografia" id="criptografia">
+            <label for="table">Nome da Tabela: </label>
+            <input type="text" name="table" id="table"  value="users">
         </div>
 
         <div>
             <label for="localHost">LocalHost: </label>
-            <input type="number" name="localHost" id="localHost">
+            <input type="text" value="5432" name="localHost" id="localHost">
         </div>
 
         <div>
             <label for="funcao">Função: </label>
             <select id="funcao">
-                <option value="chefe-adm">chefe-adm</option>
-                <option value="funcionario-employee">funcionario-employee</option>
-                <option value="usuario-user">usuario-user</option>
+                <option value="adm">adm</option>
+                <option value="funcionario">funcionario</option>
+                <option value="user">user</option>
             </select>
         </div>
 
@@ -65,6 +65,6 @@
 
 
 
-    <script src="/create-user/functions.js"></script>
+    <script src="./functions.js"></script>
 </body>
 </html>

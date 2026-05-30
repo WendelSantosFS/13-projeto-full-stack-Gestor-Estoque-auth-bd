@@ -25,7 +25,7 @@ function Admin () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify( { user, password})
+            body: JSON.stringify( { user, password} )
         })
 
         console.log(result)

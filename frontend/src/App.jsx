@@ -8,7 +8,6 @@ import Form from './components/form';
 function App() {
 
   const navigate = useNavigate()
-  ///////////
 
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("")
@@ -20,7 +19,7 @@ function App() {
     if (user.length < 1 || password.length < 1) {
       console.log("User ou password está vazio!")
     } else {
-      const response = await fetch("http://localhost:3000/", {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -33,8 +32,9 @@ function App() {
       })
 
       const data = await response.json()
+      const message = data.message
+      if ( message ) {
 
-      if (data.message == true) {
         navigate("/app")
       }
     }

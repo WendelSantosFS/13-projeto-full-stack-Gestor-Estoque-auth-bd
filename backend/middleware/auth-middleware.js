@@ -1,11 +1,22 @@
-
-const rotasAtivas = ["", "/", "/admin", "/admin/acessos", "/app"]
-
+const jwt = require('jsonwebtoken')
 
 const authMiddleware = (req, res, next) => {
-    console.log('Usuário lido por MIDDLEWARE: ', req.body.user)
+    
+    const token = req.cookies.token_seguro;
 
-    next()
+    if ( !token ) return res.status(401).json({ erro: 'Acesso negado. Faça login.'})
+
+    try {
+        console.log('token em baixo: ')
+        console.log(token)
+        const dadosDecodificados = jwt.verify(token, process.env.TOKEN_PASSWORD)
+        req.usuarioLogado = dadosDecodificados;
+        next()
+    } catch (error) {
+        return res.status(403).json({erro: 'Token inválido ou expirado!'})
+    }
 }
+
+
 
 module.exports = authMiddleware
