@@ -7,8 +7,6 @@ const authMiddleware = (req, res, next) => {
     if ( !token ) return res.status(401).json({ erro: 'Acesso negado. Faça login.'})
 
     try {
-        console.log('token em baixo: ')
-        console.log(token)
         const dadosDecodificados = jwt.verify(token, process.env.TOKEN_PASSWORD)
         req.usuarioLogado = dadosDecodificados;
         next()

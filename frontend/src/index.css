@@ -7,6 +7,11 @@
     font-family: sans-serif;
 }
 
+body {
+    background-color: #3b3a3a;
+    color: #fff;
+}
+
 .btnStyleDefault {
     padding: 6px 10px;
     background-color: #6e6b6b;
@@ -19,6 +24,5 @@ h1 {
 }
 h2 {
     font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: 700;
 }

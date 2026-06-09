@@ -1,0 +1,21 @@
+:root {
+    --bg-itens: #2c2a2a;
+}
+
+
+
+
+
+.linkMenu {
+    padding: 10px;
+    font-weight: 500;
+} .linkMenu:hover {
+    color: #000;
+    background-color: #fff;
+}
+.bordaLink {
+    border-bottom: 4px solid #dfd6d6;
+}
+.divMenu {
+    border-bottom: 3px solid #797777;
+}

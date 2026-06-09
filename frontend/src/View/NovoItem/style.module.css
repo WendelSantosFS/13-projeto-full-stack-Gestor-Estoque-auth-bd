@@ -1,0 +1,41 @@
+.divMenu {
+    border-bottom: 3px solid #797777;
+}
+
+.linkMenu {
+    padding: 10px;
+    font-weight: 500;
+} .linkMenu:hover {
+    color: #000;
+    background-color: #fff;
+}
+
+.bordaLink {
+    border-bottom: 4px solid #dfd6d6;
+}
+
+
+
+
+.inputsCriarProduto {
+    padding-top: 20px;
+}
+.input {
+    background-color: rgb(36, 35, 35);
+    padding: 10px 12px;
+
+    border-radius: 8px;
+}
+.textArea {
+    width: 900px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgb(36, 35, 35);
+}
+
+
+
+.formCadastrarProduto {
+    width: 900px;
+    background-color: transparent;
+}

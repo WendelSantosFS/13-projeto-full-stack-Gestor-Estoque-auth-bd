@@ -32,7 +32,8 @@ const sql = pg(`postgres://postgres:${process.env.PASSWORD_SQL}@localhost:5432/a
 const app = express()
 
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    credentials: true
 }))
 app.use(express.json())
 app.use(cookieParser())
@@ -40,7 +41,7 @@ app.use(cookieParser())
 
 
 
-app.post('/login', async (req, res) => {
+app.post('/', async (req, res) => {
     const { user, password } = req.body // Como estao os nomes no Front-end
 
     const resultUser = await sql`SELECT * FROM users WHERE nome = ${user}`
@@ -65,17 +66,33 @@ app.post('/login', async (req, res) => {
         maxAge: 3600000
       })
 
+
       res.json( { "message": true }) 
     } 
     else {
       res.json( { message: "user errado!"})
     }
 
-    
 })
-app.get('/app', authMiddleware, (req, res) => {
+app.get('/app', authMiddleware, async (req, res) => {
   res.json({ message: 'Bem-vindo ao sistema: ', nome: req.usuarioLogado.nome})
 })
+
+
+
+app.post('/app/criarProduto', authMiddleware, async (req, res) => {
+  const { nome, numberQuantidade, numberPreco, categoria } = req.body
+
+  try {
+    const insert = await sql`INSERT INTO produtos (nome, preco, categoria, quantidade) VALUES (${nome}, ${numberPreco}, ${categoria}, ${numberQuantidade} )`
+    res.json( { message: 'Produto cadastrado!'})
+  } catch( err ) {
+    console.log(err.message)
+  }
+
+  
+})
+
 
 
 app.post('/admin', async (req, res) => {

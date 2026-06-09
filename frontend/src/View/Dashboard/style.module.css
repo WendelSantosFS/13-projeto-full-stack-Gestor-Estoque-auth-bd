@@ -1,11 +1,15 @@
-
 .dashb {
-    margin-top: 20px;
+    padding-top: 20px;
 }
-.dashb div {
+.divDashBoard {
     background-color: #2c2a2a;
     padding: 10px 15px;
     width: 300px;
+}
+@media (max-width: 660px) {
+    .divDashBoard {
+        width: 40%;
+    }
 }
 
 .pNumber {
@@ -14,8 +18,7 @@
 
 
 .prodRecentesAcabando {
-    margin-top: 20px;
-    
+    margin-top: 20px; 
 }
 .divRecentes, .divAcabando {
     width: 45%;

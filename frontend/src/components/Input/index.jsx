@@ -1,7 +1,3 @@
-
-
-
-
 function Input ( { type, placeholder, id, name, ...rest }) {
     return <input 
         type={type}

@@ -14,7 +14,16 @@ SCRIPTS SQL:
 	    cargo VARCHAR(10) NOT NULL
     );
 
-    
+    3- CREATE TABLE IF NOT EXISTS produto ( 
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(255) NOT NULL,
+		preco DECIMAL(10,2) NOT NULL,
+		foto TEXT,
+		categoria VARCHAR(100) NOT NULL,
+
+		criado DATE DEFAULT CURRENT_DATE NOT NULL,
+		alterado DATE DEFAULT CURRENT_DATE NOT NULL
+	);
 
 
 <pre>

@@ -1,17 +1,5 @@
 .textoPrincipal {
-    font-size: 50px;
-    /* color: #fff; */
-}
-
-main {
-    height: 100vh;
-    /* display: flex;
-    justify-content: center; */
-}
-
-.divPrincipal {
-    width: 500px;
-    /* color: #fff; */
+    font-size: 50px
 }
 
 form {
@@ -26,13 +14,17 @@ form {
     form {
         width: 320px;
     }
+
+    .textoPrincipal {
+        font-size: 30px;
+        font-weight: bold;
+    }
 }
 
 
 
 form input[type="text"] , form input[type="password"]{
     width: 80%;
-    margin: 0 auto;
 }
 
 form input[type="submit"] {

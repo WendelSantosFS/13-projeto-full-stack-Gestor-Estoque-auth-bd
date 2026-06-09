@@ -11,6 +11,8 @@ import Dashboard from "./View/Dashboard"
 import Layout from './View/Layout/index.jsx';
 import Admin from "./View/Admin"
 import Acessos from './View/Acessos/index.jsx';
+import Itens from './View/Itens/index.jsx';
+import NovoItem from './View/NovoItem/index.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,15 +20,23 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
 
-        <Route path='/login' index element={ <App /> } />   // Rota de LOGIN
+        <Route path='/' index element={ <App /> } />   // Rota de LOGIN
         
-        <Route path='/admin' element={ <Admin />}></Route>              // rota do Administrador
-        <Route path='/admin/acessos' element={ <Acessos /> }></Route>
+        <Route path='/admin' element={ <Admin />}>  // rota do Administrador
+          <Route path='acessos' element={ <Acessos /> }></Route>   // ROTA: /admin/acessos
+        </Route>              
 
 
         <Route path='/app' element={ <Layout />}>   // Layout do APP
           <Route index element={ <Dashboard /> }/>  // APP
+          <Route path='itens' element={ <Itens />} />
+
+          <Route path='novoItem' element={ <NovoItem /> }/>
         </Route>
+        
+
+
+        <Route path='*' element={ <App /> } />    // Serve para REDIRECIONAR o user caso ele coloque pesquise uma ROTA inexistente 
 
       </Routes>
     </BrowserRouter>

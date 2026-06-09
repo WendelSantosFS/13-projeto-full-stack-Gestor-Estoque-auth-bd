@@ -1,9 +1,3 @@
-
-body {
-    background-color: #3b3a3a;
-    color: #fff;
-}
-
 .headerMenu {
     padding: 20px;
 }
@@ -23,6 +17,6 @@ body {
     color: #000;
 }
 
-footer {
-    margin-top: 300px;
+.footerLayout {
+    margin-top: 50px;
 }

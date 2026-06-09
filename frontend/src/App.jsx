@@ -19,30 +19,25 @@ function App() {
     if (user.length < 1 || password.length < 1) {
       console.log("User ou password está vazio!")
     } else {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:3000/", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(
-          {
-          user, password
-        }
-      )
+        body: JSON.stringify( { user, password })
       })
 
       const data = await response.json()
       const message = data.message
       if ( message ) {
-
         navigate("/app")
       }
     }
   }
 
-
   return (
-    <main className='flex mb-2'>
+    <main className='flex justify-content-center'>
       
       <div className='divPrincipal justify-center items-center flex flex-col gap-5'>
         <h1 className='textoPrincipal'>Gestor de Estoque</h1>
