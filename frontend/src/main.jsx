@@ -29,8 +29,8 @@ createRoot(document.getElementById('root')).render(
 
         <Route path='/app' element={ <Layout />}>   // Layout do APP
           <Route index element={ <Dashboard /> }/>  // APP
-          <Route path='itens' element={ <Itens />} />
 
+          <Route path='itens' element={ <Itens />} />
           <Route path='novoItem' element={ <NovoItem /> }/>
         </Route>
         

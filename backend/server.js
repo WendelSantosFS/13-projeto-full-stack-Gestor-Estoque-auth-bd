@@ -75,7 +75,39 @@ app.post('/', async (req, res) => {
 
 })
 app.get('/app', authMiddleware, async (req, res) => {
-  res.json({ message: 'Bem-vindo ao sistema: ', nome: req.usuarioLogado.nome})
+
+  const result = await sql`SELECT * FROM produtos;`
+
+  const diversidadeItens = new Set( result.map( (produto) => produto.nome)).size
+  const somaDeItens = result.reduce( (acumulador, produto) => {
+      return acumulador + produto.quantidade
+  }, 0)
+
+  let itensRecentes = []
+  result.forEach( (item) => { 
+    const data = new Date()
+    data.setDate( new Date().getDate() - 10)
+
+    if ( item.criado > data) { itensRecentes.unshift(item) }
+  })
+
+  let itensAcabando = []
+  result.forEach( (item) => {
+    if ( item.quantidade < 11 ) {
+      itensAcabando.push(item)
+    }
+  })
+  
+
+  res.json({ message: 'Bem-vindo ao sistema: ', obj: {
+    diversidade: diversidadeItens,
+    totalItens: somaDeItens,
+    recentesItens: itensRecentes,
+    recentesQuantidade: itensRecentes.length,
+
+    acabandoItens: itensAcabando,
+    acabandoQuantidade: itensAcabando.length
+  } })
 })
 
 
