@@ -37,9 +37,9 @@ function App() {
   }
 
   return (
-    <main className='flex justify-content-center'>
+    <main>
       
-      <div className='divPrincipal justify-center items-center flex flex-col gap-5'>
+      <div className='flex flex-col items-center justify-center gap-5 h-screen'>
         <h1 className='textoPrincipal'>Gestor de Estoque</h1>
 
         

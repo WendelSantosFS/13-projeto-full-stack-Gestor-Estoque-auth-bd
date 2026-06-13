@@ -14,10 +14,14 @@ import Acessos from './View/Acessos/index.jsx';
 import Itens from './View/Itens/index.jsx';
 import NovoItem from './View/NovoItem/index.jsx';
 
+import ProdutoProvider from './Functions/ProdutoProvider.jsx';
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
     <BrowserRouter>
+    <ProdutoProvider>
       <Routes>
 
         <Route path='/' index element={ <App /> } />   // Rota de LOGIN
@@ -32,13 +36,14 @@ createRoot(document.getElementById('root')).render(
 
           <Route path='itens' element={ <Itens />} />
           <Route path='novoItem' element={ <NovoItem /> }/>
-        </Route>
-        
+        </Route>        
 
 
         <Route path='*' element={ <App /> } />    // Serve para REDIRECIONAR o user caso ele coloque pesquise uma ROTA inexistente 
 
       </Routes>
+
+      </ProdutoProvider>
     </BrowserRouter>
     
   </StrictMode>,

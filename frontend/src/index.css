@@ -17,7 +17,14 @@ body {
     background-color: #6e6b6b;
     box-shadow:  1px 1px 1px transparent;
     border-radius: 10px;
-} 
+}
+
+.btn {
+    padding: 6px 10px;
+    box-shadow: 1px 1px 1px transparent;
+    border-radius: 10px;
+    border: 1px solid;
+}
 
 h1 {
     font-size: 20px;
