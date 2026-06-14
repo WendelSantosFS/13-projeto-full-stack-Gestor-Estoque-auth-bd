@@ -99,7 +99,7 @@ app.get('/app', authMiddleware, async (req, res) => {
   })
   
 
-  res.json({ message: 'Bem-vindo ao sistema: ', obj: {
+  res.json({ obj: {
     diversidade: diversidadeItens,
     totalItens: somaDeItens,
     recentesItens: itensRecentes,
@@ -107,10 +107,14 @@ app.get('/app', authMiddleware, async (req, res) => {
 
     acabandoItens: itensAcabando,
     acabandoQuantidade: itensAcabando.length
-  } })
+  },  todosProdutos: result })
 })
 
+app.get('/itens', authMiddleware, async (req, res) => {
+  const result = await sql`SELECT * FROM produtos;`
 
+  res.json(result)
+})
 
 app.post('/app/criarProduto', authMiddleware, async (req, res) => {
   const { nome, numberQuantidade, numberPreco, categoria } = req.body
@@ -124,6 +128,36 @@ app.post('/app/criarProduto', authMiddleware, async (req, res) => {
 
   
 })
+
+
+app.delete('/delete', authMiddleware, async (req, res) => {
+  const { id } = req.body
+
+  try {
+    const result = await sql`DELETE FROM produtos WHERE id = ${id} RETURNING*`
+    res.json( { produtoDeletado: result[0] })
+  } catch( err ) {
+    res.json( { err })
+  }
+  
+})
+
+app.put('/atualizar', authMiddleware, async (req, res) => {
+// if not foto   RETURN null
+  let { id, nome, numberPreco, foto, categoria, numberQuantidade } = req.body
+
+  try {
+    if ( !foto ) { foto = null}
+    const result = await sql`UPDATE produtos SET nome = ${nome}, preco = ${numberPreco}, foto = ${foto}, categoria = ${categoria}, alterado = ${new Date()}, quantidade = ${numberQuantidade} WHERE id = ${id}`
+    res.json('Atualizado com sucesso!')
+  } catch (err) {
+    console.log('campos: ', nome, numberPreco, foto, categoria, numberQuantidade)
+    console.log(err)
+    res.json(err.mesage)
+  }
+})
+
+
 
 
 

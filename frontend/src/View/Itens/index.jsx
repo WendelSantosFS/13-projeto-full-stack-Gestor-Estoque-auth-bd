@@ -11,10 +11,11 @@ import ProdutoContext from '../../Functions/ProdutoContext'
 
 
 export default function Itens () {
+    
+    const { produtos, setProdutos} = useContext(ProdutoContext)
 
     const navigate = useNavigate()
     useEffect( () => {
-
         async function rotaProtegida () {
             const result = await fetch('http://localhost:3000/app', {
                 credentials: "include"
@@ -25,6 +26,15 @@ export default function Itens () {
         }
         rotaProtegida()
 
+        async function realoadItens () {
+            if (produtos !== undefined) {
+                const response = await fetch('http://localhost:3000/itens', { credentials: 'include' })
+                const data = await response.json()
+                setProdutos(data)
+            }
+        }
+        realoadItens()
+
     }, [navigate])
 
     
@@ -32,15 +42,19 @@ export default function Itens () {
     const bordaLink = location == '/app/itens' ? styles.bordaLink : ''
 
 
-
-    const { produtos, setProdutos} = useContext(ProdutoContext)
-
-    async function realoadItens () {
-        const response = await fetch('http://localhost:3000/itens', { credentials: 'include' })
-        const data = await response.json()
-        setProdutos(data)
+    const deleteProduto = async (id) => {
+        const response = await fetch('http://localhost:3000/delete', {
+            credentials: 'include',
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( { id } )
+        })
+        const listaProdutos = produtos.filter( (produto) => produto.id !== id)
+        setProdutos(listaProdutos)
     }
-    realoadItens()
+
 
 
 
@@ -63,7 +77,7 @@ export default function Itens () {
 
             </div>
 
-            <div>
+            <div className='flex flex-col gap-2'>
                 {
                     produtos.map(  (item) => (
                         <div key={item.id} className='flex justify-between gap-5'>
@@ -82,12 +96,12 @@ export default function Itens () {
                             <div className='flex gap-3'>
                                 <Links 
                                     text={'Atualizar'}
-                                    path={`/itens/${item.id}`}
+                                    path={`/app/atualizar/${item.id}`}
                                     className="btn"
                                 />
                                 <Links
                                     text={'Deletar'}
-                                    path={`/deletar/${item.id}`}
+                                    onClick={ () => deleteProduto(item.id)}
                                     className="btn"
                                 />
                             </div>

@@ -13,6 +13,7 @@ import Admin from "./View/Admin"
 import Acessos from './View/Acessos/index.jsx';
 import Itens from './View/Itens/index.jsx';
 import NovoItem from './View/NovoItem/index.jsx';
+import AtualizarProduto from "./View/Atualizar"
 
 import ProdutoProvider from './Functions/ProdutoProvider.jsx';
 
@@ -36,6 +37,8 @@ createRoot(document.getElementById('root')).render(
 
           <Route path='itens' element={ <Itens />} />
           <Route path='novoItem' element={ <NovoItem /> }/>
+
+          <Route path='atualizar/:produtoId' element={ <AtualizarProduto />}/>
         </Route>        
 
 
