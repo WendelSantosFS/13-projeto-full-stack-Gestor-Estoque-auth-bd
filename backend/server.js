@@ -81,10 +81,8 @@ app.get('/app', authMiddleware, async (req, res) => {
 
   const result = await sql`SELECT * FROM produtos;`
 
-  const diversidadeItens = new Set( result.map( (produto) => produto.nome)).size
-  const somaDeItens = result.reduce( (acumulador, produto) => {
-      return acumulador + produto.quantidade
-  }, 0)
+  const diversidade = await sql`SELECT COUNT(id) FROM produtos;`
+  const somaDeItens = await sql`SELECT SUM(quantidade) AS total FROM produtos;`
 
   let itensRecentes = []
   result.forEach( (item) => { 
@@ -94,17 +92,14 @@ app.get('/app', authMiddleware, async (req, res) => {
     if ( item.criado > data) { itensRecentes.unshift(item) }
   })
 
-  let itensAcabando = []
-  result.forEach( (item) => {
-    if ( item.quantidade < 11 ) {
-      itensAcabando.push(item)
-    }
-  })
+
+  const itensAcabando = await sql`SELECT * FROM produtos WHERE quantidade < 11;`
+  console.log(itensAcabando)
   
 
   res.json({ obj: {
-    diversidade: diversidadeItens,
-    totalItens: somaDeItens,
+    diversidade: diversidade[0].count,
+    totalItens: somaDeItens[0].total,
     recentesItens: itensRecentes,
     recentesQuantidade: itensRecentes.length,
 
