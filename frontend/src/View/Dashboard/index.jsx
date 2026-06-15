@@ -21,13 +21,15 @@ function Dashboard () {
                 credentials: "include"
             })
             const data = await result.json()
+
+            if (data.erro) { navigate('/') }
+
             setObj(data.obj)
             setRecentes(data.obj.recentesItens)
             setAcabando(data.obj.acabandoItens)
 
             setProdutos(data.todosProdutos)
 
-            if (data.erro) { navigate('/') }
         }
         rotaProtegida()
     }, [navigate])

@@ -22,7 +22,7 @@ function Acessos() {
             setUsers(data)
         }
         acessGet()
-    }, [])
+    }, [navigate])
 
 
     async function deleteUser (id) {
@@ -46,7 +46,7 @@ function Acessos() {
     }
 
     async function addUser () {
-        const response = await fetch('http://localhost:3000/admin/create', {
+        await fetch('http://localhost:3000/admin/create', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -54,18 +54,26 @@ function Acessos() {
             },
             body: JSON.stringify( { nome, senha })
         })
-        const data = await response.json()
-        console.log(data)
         setNome('')
         setSenha('')
         reloadUser()
     }
 
-    
+    async function sairApp () {
+        await fetch('http://localhost:3000/logout', { 
+            method: 'POST',
+            credentials: 'include'
+        })
+        navigate('/admin')
+    }
 
     return(
         <div className='flex flex-col items-center gap-5'>
             <h3 className={styles.h3Admin}>Painel do ADMIN</h3>
+            <Link 
+                onClick={ () => sairApp()}
+                className={styles.btnSairApp}
+            >Sair</Link>
 
 
             <div className='flex gap-5 flex-wrap items-center justify-center'>

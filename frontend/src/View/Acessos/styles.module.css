@@ -44,3 +44,14 @@
     padding: 10px;
     border-radius: 15px;
 }
+
+
+.btnSairApp {
+    background-color: red;
+    padding: 7px 15px;
+    border-radius: 10px;
+}
+.btnSairApp:hover {
+    background-color: var(--bg-hover-btns);
+    color: #000;
+}

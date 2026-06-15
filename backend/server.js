@@ -49,30 +49,33 @@ app.post('/', async (req, res) => {
 
     const compareSenha = await bcrypt.compare(password, senha)
 
-    if ( compareSenha ) {
-      const dados = {
-        id,
-        nome,
-        cargo,
+    try {
+      if ( compareSenha ) {
+        const dados = {
+          id,
+          nome,
+          cargo,
+        }
+
+        const token = jwt.sign(dados, process.env.TOKEN_PASSWORD, {
+          expiresIn: '1h'
+        })
+
+        res.cookie('token_seguro', token, {
+          httpOnly: true,
+          sameSite: 'lax',
+          maxAge: 3600000
+        })
+
+
+        res.json( { "message": true }) 
+      } 
+      else {
+        res.json( { message: "user errado!"})
       }
-
-      const token = jwt.sign(dados, process.env.TOKEN_PASSWORD, {
-        expiresIn: '1h'
-      })
-
-      res.cookie('token_seguro', token, {
-        httpOnly: true,
-        sameSite: 'lax',
-        maxAge: 3600000
-      })
-
-
-      res.json( { "message": true }) 
-    } 
-    else {
-      res.json( { message: "user errado!"})
+    } catch (err) {
+      res.json( { erro: err })
     }
-
 })
 app.get('/app', authMiddleware, async (req, res) => {
 
@@ -227,7 +230,10 @@ app.post('/admin/create', authMiddleware, async (req, res) => {
 })
 
 
-
+app.post('/logout',  (req, res) => {
+  res.clearCookie('token_seguro')
+  res.json('logout feito!')
+})
 
 
 

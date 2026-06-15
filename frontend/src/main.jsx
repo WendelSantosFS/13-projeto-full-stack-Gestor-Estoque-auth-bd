@@ -25,12 +25,13 @@ createRoot(document.getElementById('root')).render(
     <ProdutoProvider>
       <Routes>
 
-        <Route path='/' index element={ <App /> } />   // Rota de LOGIN
         
         <Route path='/admin' element={ <Admin />}></Route>          
         <Route path='/acessos' index element={ <Acessos /> }></Route> // ROTA: /admin/acessos☻
 
 
+        <Route path='/' index element={ <App /> } />   // Rota de LOGIN
+        
         <Route path='/app' element={ <Layout />}>   // Layout do APP
           <Route index element={ <Dashboard /> }/>  // APP
 
