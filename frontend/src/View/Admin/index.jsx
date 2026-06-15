@@ -9,18 +9,15 @@ function Admin () {
 
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
-    const navigate = useNavigate('')
+    const navigate = useNavigate()
 
 
 
     async function submitAdmin (ev) {
         ev.preventDefault()
 
-        console.log(`User buscado! \n ${user}\n, ${password}\n Front-END`)
-
-
-        // Para melhores práticas de PROGRAMAÇÃO, fazer uma função que recebe (url, user, password) e retorna true or false para LOGIN
         const result = await fetch('http://localhost:3000/admin', {
+            credentials: 'include',
             method:'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -28,25 +25,29 @@ function Admin () {
             body: JSON.stringify( { user, password} )
         })
 
-        console.log(result)
-        const newResult = await result.json()
-        console.log('\n\n Retorno NEWRESULT: \n', newResult, '\n\n', newResult.SQL)
+        const { message } = await result.json()
 
-
-        if (newResult.compare) {
-            navigate('/admin/acessos')
+        if ( message === true) {
+            navigate('/acessos')
         }
 
     }
 
-    return<Form 
-        user={user}
-        setUser={setUser}
-        password={password}
-        setPassword={setPassword}
+    return(
+        <div className="flex flex-col justify-center items-center h-screen gap-5">
+            <h2>Tela de Administrador</h2>
+            <Form 
+                user={user}
+                setUser={setUser}
+                password={password}
+                setPassword={setPassword}
 
-        submitAdmin={submitAdmin}
-    />
+                submitAdmin={submitAdmin}
+            />
+        </div>
+    )
+    
+   
 
 }
 

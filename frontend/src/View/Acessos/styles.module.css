@@ -1,0 +1,46 @@
+
+
+.h3Admin {
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+.btnDeleteUser {
+    background-color: red;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.cards {
+    min-height: 400px;
+    background-color: var(--bg-campos);
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.cards h3 {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.divRenderView {
+    background-color: var(--bg-btns);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+.btnSaveUser {
+    background-color: rgb(21, 75, 138);
+    width: 170px;
+    padding: 10px;
+    border-radius: 18px;
+}
+
+.inputUser {
+    background-color: var(--bg-btns);
+    padding: 10px;
+    border-radius: 15px;
+}

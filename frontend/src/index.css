@@ -7,14 +7,23 @@
     font-family: sans-serif;
 }
 
+:root {
+    --bg-body: #3b3a3a;
+
+    --bg-btns: #6e6b6b;
+    --bg-hover-btns: #ffebcd;
+
+    --bg-campos: #2a2a2a;
+}
+
 body {
-    background-color: #3b3a3a;
+    background-color: var(--bg-body);
     color: #fff;
 }
 
 .btnStyleDefault {
     padding: 6px 10px;
-    background-color: #6e6b6b;
+    background-color: var(--bg-btns);
     box-shadow:  1px 1px 1px transparent;
     border-radius: 10px;
 }

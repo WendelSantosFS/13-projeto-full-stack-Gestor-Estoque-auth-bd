@@ -3,3 +3,11 @@
 
     border-bottom: 2px solid #6c6666;
 }
+
+.btnAdmin {
+    background-color: #3b3a3aff;
+    padding: 10px 15px;
+    border-radius: 10px;
+}.btnAdmin:hover {
+    background-color: purple
+}

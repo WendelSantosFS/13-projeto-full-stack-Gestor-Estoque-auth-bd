@@ -1,4 +1,11 @@
 <pre>
+
+RESUMO: SPA Gestor de Estoque com Autenticação JWT e persistência com SGBD 
+	Linguagens: React + Node.js( Express) + PostgreSQL
+
+
+
+
 SCRIPTS SQL:
     1- CREATE TABLE IF NOT EXISTS users (    NOME & SENHA
 	    id SERIAL PRIMARY KEY,

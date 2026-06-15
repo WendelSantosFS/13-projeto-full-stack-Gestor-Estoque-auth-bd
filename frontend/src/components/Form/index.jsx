@@ -1,4 +1,5 @@
 import Input from "../Input";
+import Links from "../Links";
 import styles from "./style.module.css"
 
 
@@ -30,6 +31,21 @@ function Form ( { user, setUser, password, setPassword, submitAdmin}) {
 
 
                     <input type="submit" value="Entrar"/>
+
+                <div className="flex gap-5">
+                    <Links 
+                        path={'/'}
+                        text={'Usuário'}
+                        className={styles.btnAdmin}
+                    />
+                    
+                    <Links 
+                        path={'/admin'}
+                        text={'Administrador'}
+                        className={styles.btnAdmin}
+                    />
+                </div>
+                    
                 </form>
 }
 
