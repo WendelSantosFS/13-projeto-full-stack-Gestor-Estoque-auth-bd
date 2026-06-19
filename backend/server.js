@@ -43,7 +43,7 @@ app.use(cookieParser())
 
 
 app.post('/', crontrollerGestorEstoque.login )
-app.get('/app', authMiddleware, crontrollerGestorEstoque.buscarProdutos)
+app.get('/app', authMiddleware, crontrollerGestorEstoque.dashboardProdutos)
 app.get('/itens', authMiddleware, crontrollerGestorEstoque.buscarItens)
 app.post('/app/criarProduto', authMiddleware, crontrollerGestorEstoque.criarProduto)
 app.delete('/delete', authMiddleware, crontrollerGestorEstoque.deletarProduto)

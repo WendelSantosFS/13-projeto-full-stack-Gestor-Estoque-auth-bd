@@ -22,7 +22,7 @@ function Dashboard () {
             })
             const data = await result.json()
 
-            if (data.erro) { navigate('/') }
+            if (data.erro) { return navigate('/') }
 
             setObj(data.obj)
             setRecentes(data.obj.recentesItens)
