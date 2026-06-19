@@ -16,6 +16,9 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    setUser('')
+    setPassword('')
+
     if (user.length < 1 || password.length < 1) {
       console.log("User ou password está vazio!")
     } else {
@@ -27,8 +30,11 @@ function App() {
         },
         body: JSON.stringify( { user, password })
       })
-
       const data = await response.json()
+      console.log(data)
+
+      
+
       const message = data.message
       if ( message ) {
         navigate("/app")

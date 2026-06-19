@@ -22,20 +22,21 @@ function Acessos() {
             setUsers(data)
         }
         acessGet()
-    }, [navigate])
+    })
 
 
-    async function deleteUser (id) {
+    const deleteUser = async (id) => {
         await fetch('http://localhost:3000/admin/delete', {
             method: 'DELETE',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify( { id })
+            body: JSON.stringify( { id } )
         })
 
         const newUsers = users.filter( user => user.id !== id)
+        console.log(newUsers)
         setUsers(newUsers)
     }
 

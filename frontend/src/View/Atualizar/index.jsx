@@ -16,7 +16,7 @@ function NovoItem () {
 
     const [nome, setNome] = useState('')
     const [quantidade, setQuantidade] = useState(0)
-    const [preco, setPreco] = useState('')
+    const [preco, setPreco] = useState(0)
     const [categoria, setCategoria] = useState('')
 
     let nomeProduto = produtos.find( (p) => p.id == +produtoId).nome
@@ -40,8 +40,6 @@ function NovoItem () {
     async function handleUpdateProduto (ev) {
         ev.preventDefault()
         
-        const numberPreco = parseFloat(preco)
-        const numberQuantidade = parseInt(quantidade)
         const id = parseInt(produtoId)
 
         const url = 'http://localhost:3000/atualizar'
@@ -51,9 +49,14 @@ function NovoItem () {
             headers: {
                 'Content-Type': "application/json"
             },
-            body: JSON.stringify({id, nome, numberQuantidade, numberPreco, categoria})
+            body: JSON.stringify({id, nome, quantidade, preco, categoria})
         })
         
+        const updateProdutos = produtos.filter( (item) => item.id !== id)
+        setProdutos([...updateProdutos, {
+            id, nome, quantidade, preco, categoria,}]
+        )
+
         navigate('/app/itens')
         
     }
