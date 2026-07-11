@@ -1,6 +1,6 @@
 <pre>
 
-RESUMO: SPA Gestor de Estoque com Autenticação JWT e persistência com SGBD 
+RESUMO: SPA Gestor de Estoque com Autenticação JWT e persistência com o SGBD PostgreSQL
 	Linguagens: React + Node.js( Express) + PostgreSQL
 
 
@@ -33,6 +33,15 @@ SCRIPTS SQL:
 
 		+ query (ALTER TABLE produtos ADD COLUMN quantidade INTEGER);
 	);
+
+
+
+
+PRÓXIMOS PASSOS:
+	° colocar relacionamentos entre tabelas para que cada usário tenha seus próprios produtos, separadamente.
+	° utilizar o REACT-QUERY( TanStack) para ESTADO GLOBAL de informações ASSÍNCRONAS.
+	°
+
 
 
 <pre>
