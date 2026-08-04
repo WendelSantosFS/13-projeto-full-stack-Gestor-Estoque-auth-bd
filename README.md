@@ -42,7 +42,7 @@ SCRIPTS SQL:
 
 
 PRÓXIMOS PASSOS:
-	° colocar relacionamentos entre tabelas para que cada usário tenha seus próprios produtos, separadamente.
+	° colocar relacionamentos entre tabelas para que cada usário tenha seus próprios produtos, separadamente. - OK
 	° utilizar o REACT-QUERY( TanStack) para ESTADO GLOBAL de informações ASSÍNCRONAS.
 	°
 
