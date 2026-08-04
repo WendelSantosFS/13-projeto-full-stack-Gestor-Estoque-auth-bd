@@ -17,23 +17,23 @@ const modelsGestorEstoque = {
         return resultSQL;
     },
 
-    dashboardModel: async (req, res) => {
-        const result = await sql`SELECT * FROM produtos;`
-        const diversidade = await sql`SELECT COUNT(id) FROM produtos;`
-        const somaDeItens = await sql`SELECT SUM(quantidade) AS total FROM produtos;`
-        const itensRecentes = await sql`SELECT * FROM produtos WHERE criado >= NOW() - INTERVAL '10 days';`
-        const itensAcabando = await sql`SELECT * FROM produtos WHERE quantidade < 11;`
+    dashboardModel: async ( userId ) => {
+        const result = await sql`SELECT * FROM produtos WHERE user_id = ${userId};` //  
+        const diversidade = await sql`SELECT COUNT(id) FROM produtos WHERE user_id = ${userId};`
+        const somaDeItens = await sql`SELECT SUM(quantidade) AS total FROM produtos WHERE user_id = ${userId};`
+        const itensRecentes = await sql`SELECT * FROM produtos WHERE criado >= NOW() - INTERVAL '10 days' and user_id = ${userId};`
+        const itensAcabando = await sql`SELECT * FROM produtos WHERE quantidade < 11 and user_id = ${userId};`
         
         return { result, diversidade, somaDeItens, itensRecentes, itensAcabando }
     },
 
-    produtosModel: async () => {
-        const result =  await sql`SELECT * FROM produtos;`
+    produtosModel: async ( userId ) => {
+        const result =  await sql`SELECT * FROM produtos WHERE user_id = ${userId};`
         return result;
     },
 
-    novoProdutoModel: async ( nome, preco, quantidade, categoria) => {
-        return await sql`INSERT INTO produtos(nome, preco, quantidade, categoria) VALUES (${nome}, ${preco}, ${quantidade}, ${categoria}) returning*`
+    novoProdutoModel: async ( nome, preco, quantidade, categoria, user_id ) => {
+        return await sql`INSERT INTO produtos(nome, preco, quantidade, categoria, user_id) VALUES (${nome}, ${preco}, ${quantidade}, ${categoria}, ${user_id}) returning*`
     },
 
     deleteProdutoModel: async (id) => {
@@ -51,7 +51,7 @@ const modelsGestorEstoque = {
     },
 
 
-    buscarUsuariosModel: async (req, res) => {
+    buscarUsuariosModel: async () => {
         const users = await sql`SELECT id, nome, cargo FROM users;`
         return users;        
     },

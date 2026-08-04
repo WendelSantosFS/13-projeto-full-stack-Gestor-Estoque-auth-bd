@@ -42,8 +42,9 @@ const crontrollerGestorEstoque = {
 
     },
     dashboardProdutos: async (req, res) => {
+        const user_id = req.usuarioLogado.id
         try {
-            const { result, diversidade, somaDeItens, itensRecentes, itensAcabando } = await modelsGestorEstoque.dashboardModel()
+            const { result, diversidade, somaDeItens, itensRecentes, itensAcabando } = await modelsGestorEstoque.dashboardModel(user_id)
 
              res.json({ obj: {
                 diversidade: diversidade[0].count,
@@ -60,20 +61,23 @@ const crontrollerGestorEstoque = {
     },
 
     buscarItens: async (req, res) => { 
+        const user_id = req.usuarioLogado.id
         try {
-            const result = await modelsGestorEstoque.produtosModel()
+            const result = await modelsGestorEstoque.produtosModel(user_id)
             res.json(result)
         } catch (err) { res.status(400).json('Não foi possível obter os produtos!') }
         
     },
 
     criarProduto: async (req, res) => {
+        // nome, numberPreco, numberQuantidade, categoria, // NOVO - user_id(relacionamento)
+        const user_id = req.usuarioLogado.id;
         const { nome, numberPreco, numberQuantidade, categoria } = req.body
 
-        if (nome.length < 1 || numberPreco == 0 || numberQuantidade < 0 || categoria.length < 1) return res.status(400).json({erro: 'Objeto incompleto'})
+        if (nome.length < 1 || numberPreco == 0 || numberQuantidade < 0 || categoria.length < 1 ) return res.status(400).json({erro: 'Objeto incompleto'})
 
         try {
-            await modelsGestorEstoque.novoProdutoModel(nome, numberPreco, numberQuantidade, categoria)
+            await modelsGestorEstoque.novoProdutoModel(nome, numberPreco, numberQuantidade, categoria, user_id)
             res.json('Produto criado com Sucesso!')
         } catch (err) {
             res.status(400).json('Erro ao criar Produto!')
@@ -136,7 +140,7 @@ const crontrollerGestorEstoque = {
 
     buscarUsuarios: async (req, res) => {
         try {
-            const resultSQL = await modelsGestorEstoque.buscarUsuariosModel(req, res)
+            const resultSQL = await modelsGestorEstoque.buscarUsuariosModel()
             res.json(resultSQL)
         } catch (err) { res.status(400).json('Erro ao BUSCAR usuários!')}
     },
